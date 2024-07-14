@@ -69,51 +69,15 @@ struct MyLabelMod : ViewModifier {
     }
 }
 
-struct MyVStackView : View {
-    var body: some View {
-        
-        VStack(alignment: .leading, spacing: 0){
-            Text("City")
-                .modifier(MyOwnStyle(size: 50, weight: Font.Weight.semibold, color: Color.red))
-            Text("New York")
-            Label("Label",systemImage: "envelope.circle")
-                .modifier(MyLabelMod())
-            Image(systemName:"sun.min.fill")
-                .modifier(MyImgMod())
-            Image(systemName: "dot.radiowaves.forward", variableValue: 0.8)
-                .font(.largeTitle)
-        }
-    }
-}
-
 struct ContentView: View {
   
     var body: some View {
-    
-        VStack{
-            Spacer()
-            HStack{
-                Image(systemName: ("cloud"))
-                    .modifier(MyImgMod())
-                VStack(alignment: .leading){
-                    Text("City")
-                        .foregroundColor(.gray)
-                    Text("New York")
-                        .font(.title)
-                }
-                Spacer()
-            }
-        }
-        .safeAreaInset(edge: .bottom, content: {
-            HStack{
-                Spacer()
-                Text("Important")
-                    .padding()
-                    .font(Font.system(size: 40).bold())
-                    .foregroundColor(.red)
-                Spacer()
-            }.background(.yellow)
-        })
+        HStack(alignment: .center){
+            Image(systemName:"bus")
+            Image(systemName:"airplane")
+            Image(systemName:"phone")
+        }.border(Color.red, width: 2)
+        .font(.title)
     }
 }
 
