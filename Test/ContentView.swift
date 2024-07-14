@@ -69,15 +69,33 @@ struct MyLabelMod : ViewModifier {
     }
 }
 
+extension VerticalAlignment {
+    enum BusAlignment: AlignmentID{
+        static func defaultValue(in dimension: ViewDimensions) -> CGFloat {
+            return dimension[VerticalAlignment.center]
+        }
+    }
+    static let alignBus = VerticalAlignment(BusAlignment.self)
+}
+
 struct ContentView: View {
   
     var body: some View {
-        HStack(alignment: .center){
-            Image(systemName:"bus")
-            Image(systemName:"airplane")
-            Image(systemName:"phone")
-        }.border(Color.red, width: 2)
-        .font(.title)
+        HStack(alignment: .alignBus){
+            VStack{
+                Image("signbus")
+                    .alignmentGuide(.alignBus) { dimension in
+                        dimension[VerticalAlignment.center]-40}
+            }
+            
+            VStack{
+                Text("Transportation")
+                Text("Bus")
+                    .font(.largeTitle)
+                    .alignmentGuide(.alignBus) { dimension in
+                        dimension[VerticalAlignment.center]}
+            }
+        }.border(Color.blue, width: 2)
     }
 }
 
