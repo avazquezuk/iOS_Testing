@@ -80,22 +80,29 @@ extension VerticalAlignment {
 
 struct ContentView: View {
   
+    let valid = true
+    
     var body: some View {
-        HStack(alignment: .alignBus){
-            VStack{
-                Image("signbus")
-                    .alignmentGuide(.alignBus) { dimension in
-                        dimension[VerticalAlignment.center]-40}
-            }
+        
+        VStack{
+            Group {
+                if valid {
+                    Image(systemName: "keyboard")
+                }
+                else {
+                    Text("The state is invalid")
+                }
+            }.foregroundColor(.gray)
             
-            VStack{
-                Text("Transportation")
-                Text("Bus")
-                    .font(.largeTitle)
-                    .alignmentGuide(.alignBus) { dimension in
-                        dimension[VerticalAlignment.center]}
-            }
-        }.border(Color.blue, width: 2)
+            Group{
+                if valid {
+                    Text("Manchester")
+                }
+                else {
+                    Text("Viena")
+                }
+            }.font(.largeTitle)
+        }
     }
 }
 
